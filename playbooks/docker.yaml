@@ -24,12 +24,12 @@
 
     - name: Add Docker official GPG key
       apt_key:
-        url: https://download.docker.com/linux/debian/gpg
+        url: https://download.docker.com/linux/ubuntu/gpg
         state: present
 
     - name: Add docker repository
       apt_repository:
-        repo: deb https://download.docker.com/linux/debian bullseye stable
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
         state: present
 
     - name: Update the cache
