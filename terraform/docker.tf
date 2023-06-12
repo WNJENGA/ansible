@@ -1,20 +1,24 @@
-provider "github" {
-  token = var.token
+provider "docker" {}
+
+resource "docker_network" "private_network" {
+  name = "my_private_network"
+  ipam_config {
+    subnet = "172.35.0.0/16"
+  }
 }
 
-resource "github_repository" "example" {
-  name        = "example-repo"
-  description = "My awesome codebase"
-
-  visibility = "public"
+# Pulls the image
+resource "docker_image" "images" {
+  count = length(var.docker_images)
+  name  = var.docker_images[count.index]
 }
 
-# Add a collaborator to a repository
-resource "github_repository_collaborator" "a_repo_collaborator" {
-  count      = length(var.organization_developers)
-  repository = github_repository.example.name
-  username   = var.organization_developers[count.index]
-  permission = "admin"
-
-  depends_on = [github_repository.example]
+# Create a container
+resource "docker_container" "containers" {
+  count = length(docker_image.images)
+  image = docker_image.images[count.index].name
+  name  = "container-${count.index}"
+  networks_advanced {
+    name = docker_network.private_network.name
+  }
 }

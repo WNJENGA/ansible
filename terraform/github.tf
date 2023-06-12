@@ -3,7 +3,7 @@ provider "github" {
 }
 
 resource "github_repository" "example" {
-  name        = "example-repo"
+  name        = "https://github.com/WNJENGA/ansible"
   description = "My awesome codebase"
 
   visibility = "public"
@@ -12,7 +12,7 @@ resource "github_repository" "example" {
 # Add a collaborator to a repository
 resource "github_repository_collaborator" "a_repo_collaborator" {
   count      = length(var.organization_developers)
-  repository = github_repository.example.name
+  repository = https://github.com/WNJENGA/ansible
   username   = var.organization_developers[count.index]
   permission = "admin"
 
