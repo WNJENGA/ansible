@@ -8,12 +8,12 @@ variable "docker_images" {
 
 variable "machine_type" {
   type    = string
-  default = "e2-medium"
+  default = "f1-micro"
 }
 
 variable "machine_image" {
   type    = string
-  default = "debian-cloud/debian-11"
+  default = "ubuntu-22.04"
 }
 
 variable "project_id" {
@@ -22,5 +22,5 @@ variable "project_id" {
 
 variable "project_region" {
   type = string
-  default = "europe-west1"
+  default = "us-central1"
 }

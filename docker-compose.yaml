@@ -3,7 +3,7 @@ version: '3'
 services:
   frontend:
     container_name: frontend_container
-    image: {{ client_image }}
+    image: "{{ client_image }}"
     ports:
       - 3000:3000
     networks:
@@ -14,7 +14,7 @@ services:
     container_name: backend_container
     ports:
       - 5000:5000
-    image: {{ backend_image }}
+    image: "{{ backend_image }}"
     environment:
       PORT: 3000
       MONGODB_URI: 'mongodb+srv://wnjenga:cwo1aYOmp7dr94Ky@cluster0.exzgxhs.mongodb.net/test'
