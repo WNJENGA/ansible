@@ -3,26 +3,25 @@ version: '3'
 services:
   frontend:
     container_name: frontend_container
-    image: "{{ client_image }}"
+    image: wnjenga/yolo-client:1.0.0
     ports:
-      - 3000:3000
+      - 4000:80
     networks:
-       yolo-test-network:
-        ipv4_address: 172.60.0.2
-
+      frontend-net:
+        ipv4_address: 172.51.0.101
   backend:
     container_name: backend_container
     ports:
-      - 5000:5000
-    image: "{{ backend_image }}"
+      - 3000:3000
+    image: wnjenga/yolo-backend:1.0.0
     environment:
       PORT: 3000
-      MONGODB_URI: 'mongodb+srv://wnjenga:cwo1aYOmp7dr94Ky@cluster0.exzgxhs.mongodb.net/test'
+      DATABASE_URL: 'mongodb+srv://wnjenga:cwo1aYOmp7dr94Ky@cluster0.exzgxhs.mongodb.net/test'
     networks:
       backend-net:
-        ipv4_address: 172.60.0.3
+        ipv4_address: 172.100.0.100
       frontend-net:
-        ipv4_address: 172.60.0.4
+        ipv4_address: 172.51.0.100
     depends_on:
       - database
     volumes:
@@ -50,7 +49,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.60.0.0/16
+        - subnet: 172.51.0.0/16
 
 volumes:
   backend_volume:

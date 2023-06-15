@@ -1,7 +1,7 @@
 # Ansible Instrumentation
 
-- Create a directory for the project mkdir ansible-IP
-- cd ansible-IP
+- Create a directory for the project mkdir ansible
+- cd ansible
 
 #### Disable SSH host keys checking
 
@@ -22,6 +22,6 @@
 #### Access the site on the output file as below
 
 vm_instance = {
-  "0" = "http://34.30.136.131"
-  "1" = "http://104.154.43.176"
+  "0" = yolo-server"
+  "1" = "yolo-client1"
 }
